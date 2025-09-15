@@ -1,6 +1,7 @@
 import { mocksService } from '../services/mocks.service.js';
 import { usersService } from '../services/users.service.js';
 import { petsService } from '../services/pets.service.js';
+import { validateGenerateDataBody } from '../utils/validation.js';
 
 export const mocksController = {
   getPets: async (req, res) => {
@@ -29,6 +30,14 @@ export const mocksController = {
   },
   generateData: async (req, res) => {
     try {
+      
+      if (!validateGenerateDataBody(req.body)) {
+        return res.status(400).json({
+          success: false,
+          error: 'El body debe contener las propiedades "users" y "pets"',
+        });
+      }
+
       const { users: usersQuantity, pets: petsQuantity } = req.body;
 
       const usersToInsert = await mocksService.generateUsers(usersQuantity);
