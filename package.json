@@ -1,0 +1,25 @@
+{
+  "name": "backend3_entrega1",
+  "version": "1.0.0",
+  "description": "Entrega 1 del curso Programación Backend III del carrera de Desarrollo Web Fullstack de Coderhouse.",
+  "main": "src/server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Juan Pablo Addeo <jpaddeo@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "@faker-js/faker": "^10.0.0",
+    "bcrypt": "^6.0.0",
+    "dotenv": "^17.2.2",
+    "express": "^5.1.0",
+    "mongoose": "^8.18.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  }
+}
