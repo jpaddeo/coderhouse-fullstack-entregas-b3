@@ -7,7 +7,11 @@
   "scripts": {
     "start": "node src/server.js",
     "dev": "nodemon src/server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha src/tests/**/*.test.js --exit",
+    "test:adoptions": "mocha src/tests/adoptions.test.js --exit",
+    "test:pets": "mocha src/tests/pets.test.js --exit",
+    "test:users": "mocha src/tests/users.test.js --exit",
+    "test:watch": "mocha src/tests/**/*.test.js --watch"
   },
   "keywords": [],
   "author": "Juan Pablo Addeo <jpaddeo@gmail.com>",
@@ -17,9 +21,15 @@
     "bcrypt": "^6.0.0",
     "dotenv": "^17.2.2",
     "express": "^5.1.0",
-    "mongoose": "^8.18.1"
+    "mongoose": "^8.18.1",
+    "multer": "^2.0.2",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.1",
+    "winston": "^3.18.3"
   },
   "devDependencies": {
+    "chai": "^6.2.0",
+    "mocha": "^11.7.4",
     "nodemon": "^3.1.10"
   }
 }

@@ -1,8 +1,24 @@
-# Entrega 1 - Backend III: Testing y Escalabilidad Backend
+# Entrega FINAL - Backend III: Testing y Escalabilidad Backend
 
 [CONSIGNA](CONSIGNA.md)
 
-## Configuración
+## Instalación
+
+### Docker
+
+#### Imagen en Docker Hub
+
+[link]()
+
+#### Compilación y publicación
+
+```bash
+docker build -t jpaddeo/coderhouse-backend3:entrega-final .
+docker tag jpaddeo/coderhouse-backend3:entrega-final jpaddeo/coderhouse-backend3:entrega-final
+docker push jpaddeo/coderhouse-backend3:entrega-final
+```
+
+### Local
 
 1. Instalar dependencias:
 
@@ -10,7 +26,7 @@
 npm install
 ```
 
-2. Configurar variables de entorno (crear `.env` basado en `.env.example`)
+2. Configurar variables de entorno (crear `.env` basado en `.env.example` y cambiar valores según ambiente)
 
 3. Iniciar el servidor:
 
@@ -65,15 +81,53 @@ npm run start
 - **Params**: `uid` (obligatorio)
 - **Respuesta**: datos de pet específica en la bd
 
+#### 3. **crear mascota**
+
+- **Endpoint**: `POST /api/pets`
+- **Body**: datos de la mascota a crear
+- **Respuesta**: mascota creada
+
+#### 4. **actualizar mascota**
+
+- **Endpoint**: `PUT /api/pets/:uid`
+- **Params**: `uid` (obligatorio)
+- **Body**: datos de la mascota a actualizar
+- **Respuesta**: mascota actualizada
+
+#### 5. **eliminar mascota**
+
+- **Endpoint**: `DELETE /api/pets/:uid`
+- **Params**: `uid` (obligatorio)
+- **Respuesta**: confirmación de eliminación
+
 ### USERS
 
-#### 1. **obtener mascotas**
+#### 1. **obtener usuarios**
 
 - **Endpoint**: `GET /api/users`
 - **Respuesta**: datos de usuarios en la bd
 
-#### 2. **obtener mascota por uid**
+#### 2. **obtener usuario por uid**
 
 - **Endpoint**: `GET /api/users/:uid`
 - **Params**: `uid` (obligatorio)
 - **Respuesta**: datos de usuario específica en la bd
+
+#### 3. **crear usuario**
+
+- **Endpoint**: `POST /api/users`
+- **Body**: datos del usuario a crear
+- **Respuesta**: usuario creada
+
+#### 4. **actualizar usuario**
+
+- **Endpoint**: `PUT /api/users/:uid`
+- **Params**: `uid` (obligatorio)
+- **Body**: datos del usuario a actualizar
+- **Respuesta**: usuario actualizada
+
+#### 5. **eliminar usuario**
+
+- **Endpoint**: `DELETE /api/users/:uid`
+- **Params**: `uid` (obligatorio)
+- **Respuesta**: confirmación de eliminación

@@ -1,0 +1,193 @@
+paths:
+  /api/adoptions:
+    get:
+      summary: Obtener todas las adopciones
+      tags:
+        - Adoptions
+      parameters:
+        - in: query
+          name: limit
+          schema:
+            type: integer
+            default: 10
+          description: Cantidad de adopciones a devolver
+        - in: query
+          name: page
+          schema:
+            type: integer
+            default: 1
+          description: Número de página
+      responses:
+        200:
+          description: Lista de adopciones obtenida exitosamente
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  payload:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Adoption'
+        500:
+          description: Error interno del servidor
+    post:
+      summary: Crear una nueva adopción
+      tags:
+        - Adoptions
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AdoptionInput'
+      responses:
+        201:
+          description: Adopción creada exitosamente
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  payload:
+                    $ref: '#/components/schemas/Adoption'
+        400:
+          description: Datos de entrada inválidos
+        500:
+          description: Error interno del servidor
+
+  /api/adoptions/{aid}:
+    get:
+      summary: Obtener adopción por ID
+      tags:
+        - Adoptions
+      parameters:
+        - in: path
+          name: aid
+          required: true
+          schema:
+            type: string
+          description: ID de la adopción
+      responses:
+        200:
+          description: Adopción obtenida exitosamente
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  payload:
+                    $ref: '#/components/schemas/Adoption'
+        404:
+          description: Adopción no encontrada
+        500:
+          description: Error interno del servidor
+    put:
+      summary: Actualizar adopción por ID
+      tags:
+        - Adoptions
+      parameters:
+        - in: path
+          name: aid
+          required: true
+          schema:
+            type: string
+          description: ID de la adopción
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AdoptionInput'
+      responses:
+        200:
+          description: Adopción actualizada exitosamente
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  payload:
+                    $ref: '#/components/schemas/Adoption'
+        400:
+          description: Datos de entrada inválidos
+        404:
+          description: Adopción no encontrada
+        500:
+          description: Error interno del servidor
+    delete:
+      summary: Eliminar adopción por ID
+      tags:
+        - Adoptions
+      parameters:
+        - in: path
+          name: aid
+          required: true
+          schema:
+            type: string
+          description: ID de la adopción
+      responses:
+        200:
+          description: Adopción eliminada exitosamente
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  message:
+                    type: string
+                    example: Adopción eliminada exitosamente
+        404:
+          description: Adopción no encontrada
+        500:
+          description: Error interno del servidor
+
+components:
+  schemas:
+    Adoption:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: Identificador único de la adopción
+        owner:
+          type: string
+          description: ID del usuario adoptante
+        pet:
+          type: string
+          description: ID de la mascota adoptada
+      example:
+        _id: '64f8b5c7e8a4d5f6a7b8c9d2'
+        owner: '64f8b5c7e8a4d5f6a7b8c9d1'
+        pet: '64f8b5c7e8a4d5f6a7b8c9d0'
+
+    AdoptionInput:
+      type: object
+      required:
+        - owner
+        - pet
+      properties:
+        owner:
+          type: string
+          description: ID del usuario adoptante
+        pet:
+          type: string
+          description: ID de la mascota a adoptar
+      example:
+        owner: '64f8b5c7e8a4d5f6a7b8c9d1'
+        pet: '64f8b5c7e8a4d5f6a7b8c9d0'

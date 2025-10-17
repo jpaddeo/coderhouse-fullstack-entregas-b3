@@ -11,6 +11,16 @@ const petSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  birthDate: Date,
+  adopted: {
+    type: Boolean,
+    default: false,
+  },
+  owner: {
+    type: mongoose.SchemaTypes.ObjectId,
+    ref: 'users',
+  },
+  image: String,
 });
 
 export const petModel = mongoose.model(collectionName, petSchema);

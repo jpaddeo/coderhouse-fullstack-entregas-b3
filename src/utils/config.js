@@ -1,3 +1,5 @@
+import { dirname } from 'path';
+
 import dotenv from 'dotenv';
 dotenv.config();
 
@@ -10,5 +12,8 @@ const CONFIG = {
     process.env.PORT || 5000
   }`,
 };
+
+export const __filename = new URL(import.meta.url).pathname;
+export const __dirname = dirname(__filename);
 
 export default CONFIG;

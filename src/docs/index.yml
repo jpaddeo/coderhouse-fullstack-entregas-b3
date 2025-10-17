@@ -1,0 +1,67 @@
+openapi: '3.0.0'
+info:
+  title: 'API Coderhouse: Backend III - Entrega Final'
+  version: '1.0.0'
+  description: 'Documentación de API de la entrega final del curso Backend III de Coderhouse'
+  contact:
+    name: 'Coderhouse'
+    email: 'info@coderhouse.com'
+
+servers:
+  - url: 'http://localhost:5000'
+    description: 'Servidor de desarrollo'
+
+tags:
+  - name: 'Pets'
+    description: 'Operaciones relacionadas con mascotas'
+  - name: 'Users'
+    description: 'Operaciones relacionadas con usuarios'
+  - name: 'Adoptions'
+    description: 'Operaciones relacionadas con adopciones'
+
+paths:
+  # Status endpoint
+  /api/status:
+    get:
+      summary: Verificar estado de la API
+      tags:
+        - General
+      responses:
+        200:
+          description: API funcionando correctamente
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: 'API funcionando correctamente'
+                  timestamp:
+                    type: number
+                    example: 1697187600000
+
+components:
+  schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Mensaje de error
+        message:
+          type: string
+          description: Descripción detallada del error
+      example:
+        error: 'Error interno del servidor'
+        message: 'Ha ocurrido un error inesperado'
+
+    SuccessResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          example: 'success'
+        message:
+          type: string
+          example: 'Operación realizada exitosamente'

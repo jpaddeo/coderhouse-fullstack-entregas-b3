@@ -39,6 +39,15 @@ const userSchema = mongoose.Schema({
     ],
     default: [],
   },
+  documents: {
+    type: [
+      {
+        name: String,
+        reference: String,
+      },
+    ],
+    default: [],
+  },
 });
 
 export const userModel = mongoose.model(userCollection, userSchema);
