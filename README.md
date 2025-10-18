@@ -8,14 +8,14 @@
 
 #### Imagen en Docker Hub
 
-[link]()
+[link a la imagen](https://hub.docker.com/layers/jpaddeo/coderhouse/b3-entrega-final/images/sha256-668e425bdd2868dfe9f4abfd94e03774eb177abf23c9b321ea7bf43e39b7faeb)
 
 #### Compilación y publicación
 
 ```bash
-docker build -t jpaddeo/coderhouse-backend3:entrega-final .
-docker tag jpaddeo/coderhouse-backend3:entrega-final jpaddeo/coderhouse-backend3:entrega-final
-docker push jpaddeo/coderhouse-backend3:entrega-final
+docker build -t jpaddeo/coderhouse:b3-entrega-final .
+docker tag jpaddeo/coderhouse:b3-entrega-final jpaddeo/coderhouse:b3-entrega-final
+docker push jpaddeo/coderhouse:b3-entrega-final
 ```
 
 ### Local
@@ -39,6 +39,8 @@ npm run start
 ```
 
 ## Endpoints
+
+Se recomienda ver documentación en en la ruta `/api/docs`.
 
 ### MOCKS
 
@@ -87,14 +89,21 @@ npm run start
 - **Body**: datos de la mascota a crear
 - **Respuesta**: mascota creada
 
-#### 4. **actualizar mascota**
+#### 4. **crear mascota con imagen**
+
+- **Endpoint**: `POST /api/pets/withimage`
+- **Body**: datos de la mascota a crear + archivo de foto
+- **Respuesta**: mascota creada
+
+
+#### 5. **actualizar mascota**
 
 - **Endpoint**: `PUT /api/pets/:uid`
 - **Params**: `uid` (obligatorio)
 - **Body**: datos de la mascota a actualizar
 - **Respuesta**: mascota actualizada
 
-#### 5. **eliminar mascota**
+#### 6. **eliminar mascota**
 
 - **Endpoint**: `DELETE /api/pets/:uid`
 - **Params**: `uid` (obligatorio)
@@ -118,6 +127,12 @@ npm run start
 - **Endpoint**: `POST /api/users`
 - **Body**: datos del usuario a crear
 - **Respuesta**: usuario creada
+
+#### 4. **adjuntar documentos a usuario**
+
+- **Endpoint**: `POST /api/users/:uid/documents`
+- **Body**: docuemntos a subir para el usuario
+- **Respuesta**: resultado de actualización
 
 #### 4. **actualizar usuario**
 
