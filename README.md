@@ -2,15 +2,27 @@
 
 [CONSIGNA](CONSIGNA.md)
 
-## Instalación
+## Compilación y ejecución
 
-### Docker
+### Ambiente Docker
 
 #### Imagen en Docker Hub
 
-[link a la imagen](https://hub.docker.com/layers/jpaddeo/coderhouse/b3-entrega-final/images/sha256-668e425bdd2868dfe9f4abfd94e03774eb177abf23c9b321ea7bf43e39b7faeb)
+[link a la imagen](https://hub.docker.com/layers/jpaddeo/coderhouse/b3-entrega-final/images/sha256-93d6f1d8b8c8164d86b8d905b4a8ec44720c25899cced029499a345bb3411fb2)
 
-#### Compilación y publicación
+#### Ejecución de proyecto usando imagen de docker
+
+```bash
+docker run -p 5000:5000 -e BASE_URL=http://localhost:5000 -e MONGODB_URI="<poner uri de mongo>" jpaddeo/coderhouse:b3-entrega-final
+```
+
+**NOTA:** Si deseamos que corra en modo daemon entonces agregar opción `-d` al comando anterior:
+
+```bash
+docker run -d -p 5000:5000 -e BASE_URL=http://localhost:5000 -e MONGODB_URI="<poner uri de mongo>" jpaddeo/coderhouse:b3-entrega-final
+```
+
+#### Generación de imagen local y publicación
 
 ```bash
 docker build -t jpaddeo/coderhouse:b3-entrega-final .
@@ -18,7 +30,7 @@ docker tag jpaddeo/coderhouse:b3-entrega-final jpaddeo/coderhouse:b3-entrega-fin
 docker push jpaddeo/coderhouse:b3-entrega-final
 ```
 
-### Local
+### Ambiente Local
 
 1. Instalar dependencias:
 
@@ -40,7 +52,7 @@ npm run start
 
 ## Endpoints
 
-Se recomienda ver documentación en en la ruta `/api/docs`.
+> Se recomienda ver documentación en en la ruta `/api/docs`.
 
 ### MOCKS
 
