@@ -50,6 +50,10 @@ npm run dev
 npm run start
 ```
 
+## Link en Railway (deploy)
+
+En el siguiente [link](https://coderhouse-fullstack-entregas-b3-production.up.railway.app/api/docs) se encuentra la solución implementada.
+
 ## Endpoints
 
 > Se recomienda ver documentación en en la ruta `/api/docs`.
