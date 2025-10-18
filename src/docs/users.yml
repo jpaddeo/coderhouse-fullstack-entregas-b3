@@ -62,6 +62,51 @@ paths:
         500:
           description: Error interno del servidor
 
+  /api/users/{uid}/documents:
+      post:
+        summary: Subir documentos para un usuario
+        tags:
+          - Users
+        parameters:
+          - in: path
+            name: uid
+            required: true
+            schema:
+              type: string
+            description: ID del usuario
+        requestBody:
+          required: true
+          content:
+            multipart/form-data:
+              schema:
+                type: object
+                properties:
+                  documents:
+                    type: array
+                    items:
+                      type: string
+                      format: binary
+                    description: Archivos de documentos a subir
+      responses:
+        200:
+          description: Documentos subidos exitosamente
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  payload:
+                    $ref: '#/components/schemas/User'
+        400:
+          description: Datos de entrada inválidos
+        404:
+          description: Usuario no encontrado
+        500:
+          description: Error interno del servidor
+
   /api/users/{uid}:
     get:
       summary: Obtener usuario por ID
@@ -188,6 +233,18 @@ components:
           items:
             type: string
           description: Lista de IDs de mascotas adoptadas por el usuario
+        documents:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                description: Nombre del documento
+              reference:
+                type: string
+                description: Referencia o URL del documento
+          description: Documentos asociados al usuario
       example:
         _id: '64f8b5c7e8a4d5f6a7b8c9d1'
         first_name: 'Juan'
@@ -196,6 +253,11 @@ components:
         password: '$2b$10$...'
         role: 'user'
         pets: ['64f8b5c7e8a4d5f6a7b8c9d0']
+        documents:
+          - name: 'Identificación'
+            reference: 'http://example.com/docs/id.pdf'
+          - name: 'Comprobante de domicilio'
+            reference: 'http://example.com/docs/address.pdf'
 
     UserInput:
       type: object

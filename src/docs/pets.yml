@@ -62,6 +62,55 @@ paths:
         500:
           description: Error interno del servidor
 
+  /api/pets/withimage:
+    post:
+      summary: Crear una nueva mascota con imagen
+      tags:
+        - Pets
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: Nombre de la mascota
+                specie:
+                  type: string
+                  description: Especie de la mascota
+                birthDate:
+                  type: string
+                  format: date
+                  description: Fecha de nacimiento de la mascota
+                image:
+                  type: string
+                  format: binary
+                  description: Imagen de la mascota
+              required:
+                - name
+                - specie
+                - birthDate
+                - image
+      responses:
+        201:
+          description: Mascota creada exitosamente con imagen
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  payload:
+                    $ref: '#/components/schemas/Pet'
+        400:
+          description: Datos de entrada inválidos
+        500:
+          description: Error interno del servidor
+
   /api/pets/{pid}:
     get:
       summary: Obtener mascota por ID
@@ -171,10 +220,20 @@ components:
         specie:
           type: string
           description: Especie de la mascota
+        birthDate:
+          type: string
+          format: date
+          description: Fecha de nacimiento de la mascota
+        image:
+          type: string
+          format: uri
+          description: URL de la imagen de la mascota
       example:
         _id: '64f8b5c7e8a4d5f6a7b8c9d0'
         name: 'Buddy'
         specie: 'dog'
+        birthDate: '2020-01-01'
+        image: 'http://example.com/images/buddy.jpg'
 
     PetInput:
       type: object
@@ -182,6 +241,7 @@ components:
         - name
         - specie
         - birthDate
+        - image
       properties:
         name:
           type: string
@@ -189,6 +249,11 @@ components:
         specie:
           type: string
           description: Especie de la mascota
+        birthDate:
+          type: string
+          format: date
+          description: Fecha de nacimiento de la mascota
       example:
         name: 'Buddy'
         specie: 'dog'
+        birthDate: '2020-01-01'
